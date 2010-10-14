@@ -140,7 +140,22 @@
 					});
 				}
 			});
-		}
+		},
+
+    remove: function(query, options, callback) {
+      this.getCollection(function(error, collection) {
+        if( error ) callback(error)
+        else {
+          collection.remove(query, options, function(error, collection) {
+            if ( error ) callback(error)
+            else {
+              callback(null);
+            }
+          });
+        }
+      });
+    }
+
 	};
 
 exports.DataProvider = DataProvider;
